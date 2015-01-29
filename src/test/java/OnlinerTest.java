@@ -3,7 +3,7 @@ import helpers.CustomListener;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import pageobject.onliner.OnlinerConfitmPage;
+import pageobject.onliner.OnlinerConfirmPage;
 
 import static steps.Steps.goLostPageOnlinerAndSendEmail;
 
@@ -12,6 +12,6 @@ public class OnlinerTest extends BaseTest {
     @Test
     public void confirmPageTest() throws InterruptedException {
         goLostPageOnlinerAndSendEmail("someemail");
-        Assert.assertTrue(OnlinerConfitmPage.isConfirmPage());
+        Assert.assertTrue(OnlinerConfirmPage.isConfirmPage());
     }
 }
