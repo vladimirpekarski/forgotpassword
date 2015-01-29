@@ -8,7 +8,7 @@ import pageobject.onliner.OnlinerConfitmPage;
 import static steps.Steps.goLostPageOnlinerAndSendEmail;
 
 @Listeners(CustomListener.class)
-public class OnlinetTest extends BaseTest {
+public class OnlinerTest extends BaseTest {
     @Test
     public void confirmPageTest() throws InterruptedException {
         goLostPageOnlinerAndSendEmail("someemail");
