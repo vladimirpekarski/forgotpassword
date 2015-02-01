@@ -28,6 +28,8 @@ public class OnlinerTest extends BaseTest {
         waitForSpecificTilte(getUser("google.user")[0]);
         Assert.assertTrue(GoogleEmailsListPage.isGoogleEmailsListPage());
 
+        GoogleLoginPage.getGoogleBasicHTML();
+
         GoogleEmailsListPage.openOnlinerEmail();
         Assert.assertTrue(GoogleEmailPage.isRestoryEmail());
 

@@ -24,4 +24,8 @@ public class GoogleLoginPage {
         getWebdriver().findElement(PASS_FIELD_LOCATOR).sendKeys(userPass);
         getWebdriver().findElement(SIGN_IN_BUTTON_LOCATOR).click();
     }
+
+    public static void getGoogleBasicHTML() {
+        getWebdriver().get("http://mail.google.com/mail?ui=html");
+    }
 }
