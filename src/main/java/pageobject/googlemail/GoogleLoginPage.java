@@ -20,12 +20,8 @@ public class GoogleLoginPage {
     }
 
     public static void loginGoogleMail(String userName, String userPass) {
-        getWebdriver().findElement(EMAIL_FIEL_LOCATOR).clear();
         getWebdriver().findElement(EMAIL_FIEL_LOCATOR).sendKeys(userName);
-
-        getWebdriver().findElement(PASS_FIELD_LOCATOR).clear();
         getWebdriver().findElement(PASS_FIELD_LOCATOR).sendKeys(userPass);
-
         getWebdriver().findElement(SIGN_IN_BUTTON_LOCATOR).click();
     }
 }
