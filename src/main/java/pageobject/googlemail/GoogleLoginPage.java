@@ -11,10 +11,6 @@ public class GoogleLoginPage {
     public static final By SIGN_IN_BUTTON_LOCATOR = getLocator("googleLoginPage.signInButton");
     public static final By SIGN_IN_LABEL = getLocator("googleLoginPage.signInLabel");
 
-    public static void getGooglePage() {
-        getWebdriver().get("https://mail.google.com/");
-    }
-
     public static Boolean isGoogleLoginPage() {
         return getWebdriver().findElement(SIGN_IN_BUTTON_LOCATOR).isDisplayed();
     }
@@ -23,9 +19,5 @@ public class GoogleLoginPage {
         getWebdriver().findElement(EMAIL_FIEL_LOCATOR).sendKeys(userName);
         getWebdriver().findElement(PASS_FIELD_LOCATOR).sendKeys(userPass);
         getWebdriver().findElement(SIGN_IN_BUTTON_LOCATOR).click();
-    }
-
-    public static void getGoogleBasicHTML() {
-        getWebdriver().get("http://mail.google.com/mail?ui=html");
     }
 }
