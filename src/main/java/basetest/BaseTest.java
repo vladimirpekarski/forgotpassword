@@ -12,7 +12,7 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUpDriver() {
-        browser = System.getProperty("browser", "firefox");
+        browser = System.getProperty("browser", "chrome");
         initWebDriver(browser).get(BASE_URL);
     }
 
