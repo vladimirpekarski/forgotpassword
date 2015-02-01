@@ -1,5 +1,4 @@
 import basetest.BaseTest;
-import helpers.Actions;
 import helpers.CustomListener;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -10,10 +9,9 @@ import pageobject.googlemail.GoogleLoginPage;
 import pageobject.onliner.OnlinerChangePasswordPage;
 import pageobject.onliner.OnlinerConfirmPage;
 import pageobject.onliner.OnlinerLoginPage;
+import pageobject.onliner.OnlinerMainPage;
 
-import static helpers.Actions.getGoogleBasicHTML;
-import static helpers.Actions.getGooglePage;
-import static helpers.Actions.switchTab;
+import static helpers.Actions.*;
 import static helpers.UserCred.getUser;
 import static helpers.Waiters.waitForSpecificTilte;
 import static steps.Steps.goLostPageOnlinerAndSendEmail;
@@ -21,7 +19,7 @@ import static steps.Steps.goLostPageOnlinerAndSendEmail;
 @Listeners(CustomListener.class)
 public class OnlinerTest extends BaseTest {
     @Test
-    public void confirmPageTest() throws InterruptedException {
+    public void forgotPasswordTest() throws InterruptedException {
         goLostPageOnlinerAndSendEmail(getUser("onliner.user")[0]);
         Assert.assertTrue(OnlinerConfirmPage.isConfirmPage());
 
@@ -44,6 +42,13 @@ public class OnlinerTest extends BaseTest {
         Assert.assertTrue(OnlinerChangePasswordPage.isOnlinerChangePasswordPage());
 
         OnlinerChangePasswordPage.saveNewPassword();
+
+        getMainOnlinerPage();
+
+        OnlinerMainPage.clickEnterButton();
+        OnlinerLoginPage.login(getUser("onliner.user")[0], getUser("onliner.user")[1]);
+
+        Thread.sleep(8000);
 
 //        OnlinerLoginPage.
     }

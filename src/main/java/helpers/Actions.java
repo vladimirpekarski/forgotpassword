@@ -30,6 +30,10 @@ public class Actions {
         getWebdriver().get("http://mail.google.com/mail?ui=html");
     }
 
+    public static void getMainOnlinerPage() {
+        getWebdriver().get("http://www.onliner.by/");
+    }
+
     public static void switchTab(String title) {
         ArrayList<String> handles = new ArrayList<>(getWebdriver()
                 .getWindowHandles());
