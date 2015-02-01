@@ -7,22 +7,23 @@ import pageobject.googlemail.GoogleEmailsPage;
 import pageobject.googlemail.GoogleLoginPage;
 import pageobject.onliner.OnlinerConfirmPage;
 
-import static helpers.Waiters.waitUntilScriptsEnd;
+import static helpers.UserCred.getUser;
+import static helpers.Waiters.waitForSpecificTilte;
 import static steps.Steps.goLostPageOnlinerAndSendEmail;
 
 @Listeners(CustomListener.class)
 public class OnlinerTest extends BaseTest {
     @Test
     public void confirmPageTest() throws InterruptedException {
-        goLostPageOnlinerAndSendEmail("email");
+        goLostPageOnlinerAndSendEmail(getUser("onliner.user")[0]);
         Assert.assertTrue(OnlinerConfirmPage.isConfirmPage());
 
         GoogleLoginPage.getGooglePage();
 
         Assert.assertTrue(GoogleLoginPage.isGoogleLoginPage());
-        GoogleLoginPage.loginGoogleMail("user", "pass");
+        GoogleLoginPage.loginGoogleMail(getUser("google.user")[0], getUser("google.user")[1]);
 
-        waitUntilScriptsEnd();
+        waitForSpecificTilte(getUser("google.user")[0]);
         Assert.assertTrue(GoogleEmailsPage.isGoogleEmailsPage());
     }
 }
