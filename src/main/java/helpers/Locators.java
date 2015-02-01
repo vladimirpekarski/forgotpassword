@@ -48,7 +48,7 @@ public class Locators {
 
             default: {
                 throw  new IllegalArgumentException(
-                        "Locator Type: " + locatorsType + "doesn't exist");
+                        "Locator Type: " + locatorTypeAndValue[0] + "doesn't exist");
             }
         }
     }

@@ -13,7 +13,7 @@ public class CustomListener extends ExitCodeListener{
     @Override
     public void onTestFailure(ITestResult result) {
         super.onTestFailure(result);
-        System.out.println("Test failed at: " + new Date());
+        System.out.println("Test failed at: " + currentDate);
         Actions.takeScreenshot("D:/FailedTests/" +
                 result.getMethod().getTestClass().getName() +
                 "/" + format.format(currentDate) +
@@ -23,12 +23,12 @@ public class CustomListener extends ExitCodeListener{
     @Override
     public void onTestStart(ITestResult result) {
         super.onTestStart(result);
-        System.out.println("Test started at: " + new Date());
+        System.out.println("Test started at: " + currentDate);
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
         super.onTestSuccess(result);
-        System.out.println("Test passed at: " + new Date());
+        System.out.println("Test passed at: " + currentDate);
     }
 }
