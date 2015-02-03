@@ -10,7 +10,6 @@ public class OnlinerConfirmPage {
 
     public static Boolean isConfirmPage() {
         return getWebdriver().findElement(CONFIRM_MESSAGE_LABEL)
-                .getText()
-                .equals("Спасибо! Инструкции высланы на адрес, указанный вами при регистрации");
+                .getText().equals("Спасибо! Инструкции высланы на адрес, указанный вами при регистрации");
     }
 }

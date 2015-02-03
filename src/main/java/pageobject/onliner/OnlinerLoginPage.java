@@ -1,10 +1,8 @@
 package pageobject.onliner;
 
-import helpers.UserCred;
 import org.openqa.selenium.By;
 
 import static helpers.Locators.getLocator;
-import static helpers.UserCred.getUser;
 import static webdriversingleton.WebDriverSingleton.getWebdriver;
 
 public class OnlinerLoginPage {

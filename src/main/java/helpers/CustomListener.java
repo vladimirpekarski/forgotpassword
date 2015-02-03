@@ -13,8 +13,10 @@ public class CustomListener extends ExitCodeListener{
     @Override
     public void onTestFailure(ITestResult result) {
         super.onTestFailure(result);
+        String relPath = getClass().getProtectionDomain().getCodeSource()
+                .getLocation().getFile();
         System.out.println("Test failed at: " + currentDate);
-        Actions.takeScreenshot("D:/FailedTests/" +
+        Actions.takeScreenshot(relPath + "../../target/FailedTests/" +
                 result.getMethod().getTestClass().getName() +
                 "/" + format.format(currentDate) +
                 "/" + result.getMethod().getMethodName() + ".png");

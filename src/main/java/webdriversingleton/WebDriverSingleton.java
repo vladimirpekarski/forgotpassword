@@ -39,8 +39,8 @@ public class WebDriverSingleton {
             }
         }
 
-        webDriver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
-        webDriver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        webDriver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
+        webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         webDriver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 
         webDriver.manage().window().maximize();

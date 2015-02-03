@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static helpers.Waiters.waitForTitle;
 import static webdriversingleton.WebDriverSingleton.getWebdriver;
 
 public class Actions {
@@ -22,16 +23,8 @@ public class Actions {
         }
     }
 
-    public static void getGooglePage() {
-        getWebdriver().get("https://mail.google.com/");
-    }
-
-    public static void getGoogleBasicHTML() {
-        getWebdriver().get("http://mail.google.com/mail?ui=html");
-    }
-
-    public static void getMainOnlinerPage() {
-        getWebdriver().get("http://www.onliner.by/");
+    public static void openURl(String url) {
+        getWebdriver().get(url);
     }
 
     public static void switchTab(String title) {
@@ -39,7 +32,7 @@ public class Actions {
                 .getWindowHandles());
         for (String handle: handles) {
             if(!getWebdriver().switchTo().window(handle).getTitle().equals(title)) {
-                getWebdriver().close();
+                continue;
             }
         }
     }

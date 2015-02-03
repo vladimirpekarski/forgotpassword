@@ -6,14 +6,14 @@ import org.testng.annotations.BeforeMethod;
 import static webdriversingleton.WebDriverSingleton.getWebdriver;
 import static webdriversingleton.WebDriverSingleton.initWebDriver;
 
-public class BaseTest {
-    protected static String BASE_URL = "http://www.onliner.by/";
-    protected static String browser;
+public class BaseTest { // todo: what is better BaseTest or TestBase?
+    // A: I think it's better to use BaseTest, because it means basic parent class and
+    // all other test classes extend it
+    protected final static String BASE_URL = "http://www.onliner.by/";
 
     @BeforeMethod
-    public void setUpDriver() {
-        browser = System.getProperty("browser", "chrome");
-        initWebDriver(browser).get(BASE_URL);
+    public void setup() {
+        initWebDriver(System.getProperty("browser", "chrome")).get(BASE_URL);
     }
 
     @AfterMethod

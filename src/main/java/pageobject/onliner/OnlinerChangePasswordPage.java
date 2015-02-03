@@ -1,8 +1,8 @@
 package pageobject.onliner;
 import org.openqa.selenium.By;
+import org.openqa.selenium.interactions.Actions;
 
 import static helpers.Locators.getLocator;
-import static helpers.UserCred.getUser;
 import static webdriversingleton.WebDriverSingleton.getWebdriver;
 
 public class OnlinerChangePasswordPage {
@@ -20,11 +20,22 @@ public class OnlinerChangePasswordPage {
                 .contains("Смена пароля");
     }
 
-    public static void saveNewPassword() {
-        getWebdriver().findElement(PASSWORD_FILED_ONE_LABEL)
-                .sendKeys(getUser("onliner.user")[1]);
-        getWebdriver().findElement(PASSWORD_FILED_TWO_LABEL)
-                .sendKeys(getUser("onliner.user")[1]);
-        getWebdriver().findElement(SAVE_BUTTON_LABEL).click();
+    public static void saveNewPassword(String newPass) {
+        Actions actionTypeNewPass = new Actions(getWebdriver());
+        actionTypeNewPass.moveToElement(getWebdriver().findElement(PASSWORD_FILED_ONE_LABEL));
+        actionTypeNewPass.click();
+        actionTypeNewPass.sendKeys(newPass);
+        actionTypeNewPass.build().perform();
+
+        Actions actionConfirmNewPass = new Actions(getWebdriver());
+        actionConfirmNewPass.moveToElement(getWebdriver().findElement(PASSWORD_FILED_TWO_LABEL));
+        actionConfirmNewPass.click();
+        actionConfirmNewPass.sendKeys(newPass);
+        actionConfirmNewPass.build().perform();
+
+        Actions actionClickSaveButton = new Actions(getWebdriver());
+        actionClickSaveButton.moveToElement(getWebdriver().findElement(SAVE_BUTTON_LABEL));
+        actionClickSaveButton.click();
+        actionClickSaveButton.build().perform();
     }
 }
