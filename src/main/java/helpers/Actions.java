@@ -31,8 +31,8 @@ public class Actions {
         ArrayList<String> handles = new ArrayList<>(getWebdriver()
                 .getWindowHandles());
         for (String handle: handles) {
-            if(!getWebdriver().switchTo().window(handle).getTitle().equals(title)) {
-                continue;
+            if(getWebdriver().switchTo().window(handle).getTitle().equals(title)) {
+                break;
             }
         }
     }
