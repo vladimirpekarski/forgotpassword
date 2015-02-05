@@ -5,15 +5,17 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
 public class WebDriverSingleton {
-    private static WebDriver webDriver;
+    private static Map<Long, WebDriver> driverBus = new ConcurrentHashMap<>();
     private WebDriverSingleton() {};
 
     public static WebDriver getWebdriver() {
-        if (webDriver != null) {
-            return webDriver;
+        if (driverBus.containsKey(Thread.currentThread().getId())) {
+            return driverBus.get(Thread.currentThread().getId());
         }
         else {
             return new FirefoxDriver();
@@ -21,6 +23,8 @@ public class WebDriverSingleton {
     }
 
     public static WebDriver initWebDriver(String browser) {
+        WebDriver webDriver;
+
         switch (browser) {
             case "chrome": {
                 webDriver = new ChromeDriver();
@@ -39,12 +43,23 @@ public class WebDriverSingleton {
             }
         }
 
+        webDriver.manage().window().maximize();
         webDriver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
         webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         webDriver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-
-        webDriver.manage().window().maximize();
+        driverBus.put(Thread.currentThread().getId(), webDriver);
 
         return webDriver;
+    }
+
+    public static void quit() {
+        if(driverBus.containsKey(Thread.currentThread().getId())) {
+            WebDriver driver = driverBus.get(Thread.currentThread().getId());
+            if(driver != null) {
+                driver.quit();
+            }
+
+            driverBus.remove(Thread.currentThread().getId());
+        }
     }
 }

@@ -3,7 +3,7 @@ package basetest;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import static webdriversingleton.WebDriverSingleton.getWebdriver;
+import static webdriversingleton.WebDriverSingleton.quit;
 import static webdriversingleton.WebDriverSingleton.initWebDriver;
 
 public class BaseTest { // todo: what is better BaseTest or TestBase?
@@ -18,6 +18,6 @@ public class BaseTest { // todo: what is better BaseTest or TestBase?
 
     @AfterMethod
     public void teardown() {
-        getWebdriver().quit();
+        quit();
     }
 }
