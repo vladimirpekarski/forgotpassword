@@ -5,6 +5,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageobject.googlemail.GoogleEmailPage;
 import pageobject.googlemail.GoogleEmailsListPage;
+import pageobject.googlemail.GoogleHelpPage;
 import pageobject.googlemail.GoogleLoginPage;
 import pageobject.onliner.OnlinerChangePasswordPage;
 
@@ -20,7 +21,8 @@ public class LoginGoogleTest extends BaseTest {
 
     @Test
     public void LogInGoogleTest() {
-        openURl("https://mail.google.com/");
+        openURl("https://www.gmail.com/intl/ru/mail/help/about.html");
+        GoogleHelpPage.clickSignInLink();
 
         GoogleLoginPage.loginGoogleMail(googleUserName, googleUserPass);
         waitForTitle(googleUserName);

@@ -5,6 +5,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageobject.googlemail.GoogleEmailPage;
 import pageobject.googlemail.GoogleEmailsListPage;
+import pageobject.googlemail.GoogleHelpPage;
 import pageobject.googlemail.GoogleLoginPage;
 import pageobject.onliner.OnlinerChangePasswordPage;
 import pageobject.onliner.OnlinerConfirmPage;
@@ -29,7 +30,9 @@ public class OnlinerTest extends BaseTest {
         goLostPageOnlinerAndSendEmail(onlinerUserName);
         Assert.assertTrue(OnlinerConfirmPage.isConfirmPage());
 
-        openURl("https://mail.google.com/");
+        openURl("https://www.gmail.com/intl/ru/mail/help/about.html");
+        GoogleHelpPage.clickSignInLink();
+
         Assert.assertTrue(GoogleLoginPage.isGoogleLoginPage());
 
         GoogleLoginPage.loginGoogleMail(googleUserName, googleUserPass);
