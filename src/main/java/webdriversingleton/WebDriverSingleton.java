@@ -4,7 +4,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
@@ -23,23 +27,50 @@ public class WebDriverSingleton {
     }
 
     public static WebDriver initWebDriver(String browser) {
-        WebDriver webDriver;
+        String remote = System.getProperty("remote", "");
+        WebDriver webDriver = null;
 
-        switch (browser) {
-            case "chrome": {
-                webDriver = new ChromeDriver();
-                break;
+        if (remote.length() > 0) {
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            switch (browser) {
+                case "firefox": {
+                    capabilities.setBrowserName("firefox");
+                    break;
+                }
+                case "chrome": {
+                    capabilities.setBrowserName("chrome");
+                    break;
+                }
+                case "ie": {
+                    capabilities.setBrowserName("internet explorer");
+                    break;
+                }
+                default: {
+                    capabilities.setBrowserName("firefox");
+                }
             }
-            case "firefox": {
-                webDriver = new FirefoxDriver();
-                break;
+            try {
+                webDriver = new RemoteWebDriver(new URL(remote), capabilities);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
             }
-            case "ie": {
-                webDriver = new InternetExplorerDriver();
-                break;
-            }
-            default: {
-                webDriver = new FirefoxDriver();
+        } else {
+            switch (browser) {
+                case "chrome": {
+                    webDriver = new ChromeDriver();
+                    break;
+                }
+                case "firefox": {
+                    webDriver = new FirefoxDriver();
+                    break;
+                }
+                case "ie": {
+                    webDriver = new InternetExplorerDriver();
+                    break;
+                }
+                default: {
+                    webDriver = new FirefoxDriver();
+                }
             }
         }
 
@@ -47,8 +78,8 @@ public class WebDriverSingleton {
         webDriver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
         webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         webDriver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-        driverBus.put(Thread.currentThread().getId(), webDriver);
 
+        driverBus.put(Thread.currentThread().getId(), webDriver);
         return webDriver;
     }
 

@@ -13,7 +13,7 @@ public class BaseTest { // todo: what is better BaseTest or TestBase?
 
     @BeforeMethod
     public void setup() {
-        initWebDriver(System.getProperty("browser", "chrome")).get(BASE_URL);
+        initWebDriver(System.getProperty("browser", "firefox")).get(BASE_URL);
     }
 
     @AfterMethod
