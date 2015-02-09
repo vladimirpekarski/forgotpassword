@@ -10,7 +10,7 @@ import pageobject.onliner.*;
 import static helpers.Actions.openURl;
 import static helpers.Actions.switchTab;
 import static helpers.UserCred.getUser;
-import static helpers.Waiters.waitForElementDisplay;
+import static helpers.Waiters.waitForElementDisplayed;
 import static helpers.Waiters.waitForTitle;
 import static steps.Steps.goLostPageOnlinerAndSendEmail;
 
@@ -24,18 +24,18 @@ public class ConcurrentTest extends BaseTest{
     public void loginTest(){
         OnlinerMainPage.clickEnterButton();
         OnlinerLoginPage.login(onlinerUserName, onlinerUserNewPass);
-        waitForElementDisplay(OnlinerInternalPage.EXIT_LINK_LOCATOR);
+        waitForElementDisplayed(OnlinerInternalPage.EXIT_LINK_LOCATOR);
 
         Assert.assertTrue(OnlinerInternalPage.isLoggedIn());
     }
 
     @Test
-    public void LogInGoogleTest() {
+    public void LogInGoogleTest() { //method name starts with lower case
         openURl("https://www.gmail.com/intl/ru/mail/help/about.html");
         GoogleHelpPage.clickSignInLink();
 
         GoogleLoginPage.loginGoogleMail(googleUserName, googleUserPass);
-        waitForTitle(googleUserName);
+        waitForTitle(googleUserName); //can be moved to loginGoogleMail method
         Assert.assertTrue(GoogleEmailsListPage.isUserLoggedIn(googleUserName));
 
         openURl("http://mail.google.com/mail?ui=html");
@@ -75,7 +75,7 @@ public class ConcurrentTest extends BaseTest{
 
         OnlinerChangePasswordPage.saveNewPassword(onlinerUserNewPass);
         OnlinerLoginPage.login(onlinerUserName, onlinerUserNewPass);
-        waitForElementDisplay(OnlinerInternalPage.EXIT_LINK_LOCATOR);
+        waitForElementDisplayed(OnlinerInternalPage.EXIT_LINK_LOCATOR);
 
         Assert.assertTrue(OnlinerInternalPage.isLoggedIn());
     }

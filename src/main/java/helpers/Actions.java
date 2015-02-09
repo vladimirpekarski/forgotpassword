@@ -7,8 +7,8 @@ import org.openqa.selenium.TakesScreenshot;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
-import static helpers.Waiters.waitForTitle;
 import static webdriversingleton.WebDriverSingleton.getWebdriver;
 
 public class Actions {
@@ -28,7 +28,7 @@ public class Actions {
     }
 
     public static void switchTab(String title) {
-        ArrayList<String> handles = new ArrayList<>(getWebdriver()
+        List<String> handles = new ArrayList<>(getWebdriver()
                 .getWindowHandles());
         for (String handle: handles) {
             if(getWebdriver().switchTo().window(handle).getTitle().equals(title)) {
