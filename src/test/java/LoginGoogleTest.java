@@ -20,7 +20,7 @@ public class LoginGoogleTest extends BaseTest {
     private String onlinerUserNewPass = getUser("onliner.user")[1];
 
     @Test
-    public void LogInGoogleTest() {
+    public void LogInGoogleTest() { //method name
         openURl("https://www.gmail.com/intl/ru/mail/help/about.html");
         GoogleHelpPage.clickSignInLink();
 

@@ -14,7 +14,7 @@ import pageobject.onliner.OnlinerLoginPage;
 
 import static helpers.Actions.*;
 import static helpers.UserCred.getUser;
-import static helpers.Waiters.waitForElementDisplay;
+import static helpers.Waiters.waitForElementDisplayed;
 import static helpers.Waiters.waitForTitle;
 import static steps.Steps.goLostPageOnlinerAndSendEmail;
 
@@ -52,7 +52,7 @@ public class OnlinerTest extends BaseTest {
 
         OnlinerChangePasswordPage.saveNewPassword(onlinerUserNewPass);
         OnlinerLoginPage.login(onlinerUserName, onlinerUserNewPass);
-        waitForElementDisplay(OnlinerInternalPage.EXIT_LINK_LOCATOR);
+        waitForElementDisplayed(OnlinerInternalPage.EXIT_LINK_LOCATOR);
 
         Assert.assertTrue(OnlinerInternalPage.isLoggedIn());
     }

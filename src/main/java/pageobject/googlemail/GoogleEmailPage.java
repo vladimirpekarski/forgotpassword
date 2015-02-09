@@ -9,7 +9,7 @@ public class GoogleEmailPage {
     public static final By ONLINER_URL_LOCATOR = getLocator("googleEmailPage.onlinerURL");
 
     public static Boolean isRestoreEmail() {
-        return getWebdriver().getTitle().contains("Восстановление пароля");
+        return getWebdriver().getTitle().contains("Восстановление пароля"); // no hard code
     }
 
     public static void openOnlinerChangePasswordPage() {
