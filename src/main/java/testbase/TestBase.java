@@ -1,18 +1,18 @@
-package basetest;
+package testbase;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import java.net.MalformedURLException;
+
 import static webdriversingleton.WebDriverSingleton.quit;
 import static webdriversingleton.WebDriverSingleton.initWebDriver;
 
-public class BaseTest { // todo: what is better BaseTest or TestBase?
-    // A: I think it's better to use BaseTest, because it means basic parent class and
-    // all other test classes extend it
+public class TestBase {
     protected final static String BASE_URL = "http://www.onliner.by/";
 
     @BeforeMethod
-    public void setup() {
+    public void setup() throws MalformedURLException {
         initWebDriver(System.getProperty("browser", "firefox")).get(BASE_URL);
     }
 

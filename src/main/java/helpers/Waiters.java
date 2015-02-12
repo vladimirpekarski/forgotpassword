@@ -1,13 +1,15 @@
 package helpers;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static webdriversingleton.WebDriverSingleton.getWebdriver;
 
 public class Waiters {
-    public static void waitUntilPageLoaging() {
+    public static void waitForPageLoaging() {
         (new WebDriverWait(getWebdriver(), 10)).until(new ExpectedCondition<Object>() {
             @Override
             public Boolean apply(WebDriver d) {
@@ -17,10 +19,7 @@ public class Waiters {
         });
     }
 
-    public static void waitForTitle(final String title) {  // todo: should be equal instead of contains
-        //Q: renamed method from waitForSpecificTitle to waitForTitle as google
-        // contains titles like 'Inbox (N) - userName - Gmail' - hard to check this title (N could be any number)
-        // Is it Ok?
+    public static void waitForTitleContains(final String title) {
         (new WebDriverWait(getWebdriver(), 10)).until(new ExpectedCondition<Boolean>() {
             @Override
             public Boolean apply(WebDriver d) {
@@ -29,7 +28,7 @@ public class Waiters {
         });
     }
 
-    public static void waitForElementDisplay(final By locator) {
+    public static void waitForElementDisplayed(final By locator) {
         (new WebDriverWait(getWebdriver(), 10)).until(new ExpectedCondition<Boolean>() {
             @Override
             public Boolean apply(WebDriver d) {

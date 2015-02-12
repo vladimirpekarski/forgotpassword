@@ -26,9 +26,9 @@ public class WebDriverSingleton {
         }
     }
 
-    public static WebDriver initWebDriver(String browser) {
+    public static WebDriver initWebDriver(String browser) throws MalformedURLException {
         String remote = System.getProperty("remote", "");
-        WebDriver webDriver = null;
+        WebDriver webDriver;
 
         if (remote.length() > 0) {
             DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -49,11 +49,9 @@ public class WebDriverSingleton {
                     capabilities.setBrowserName("firefox");
                 }
             }
-            try {
-                webDriver = new RemoteWebDriver(new URL(remote), capabilities);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
+
+            webDriver = new RemoteWebDriver(new URL(remote), capabilities);
+
         } else {
             switch (browser) {
                 case "chrome": {

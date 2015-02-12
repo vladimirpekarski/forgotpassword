@@ -8,8 +8,8 @@ import static webdriversingleton.WebDriverSingleton.getWebdriver;
 public class GoogleEmailPage {
     public static final By ONLINER_URL_LOCATOR = getLocator("googleEmailPage.onlinerURL");
 
-    public static Boolean isRestoreEmail() {
-        return getWebdriver().getTitle().contains("Восстановление пароля");
+    public static Boolean isRestoreEmail(String title) {
+        return getWebdriver().getTitle().contains(title);
     }
 
     public static void openOnlinerChangePasswordPage() {
